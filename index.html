@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For My Favourite Boy ♡</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- =========================================
+         MEMORIES PAGE DESIGN
+         ONLY FOR MEMORIES PAGE
+    ========================================== -->
+
+    <style>
+
+        /* =========================================
+           MEMORIES PAGE
+        ========================================== */
+
+        .memories-page {
+            display: none;
+            min-height: 100vh;
+            padding: 75px 0 80px;
+            overflow: hidden;
+            position: relative;
+
+            background-color: #fff8e9;
+
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent 0px,
+                    transparent 34px,
+                    rgba(222, 190, 160, .25) 35px,
+                    transparent 36px
+                );
+        }
+
+
+        /* =========================================
+           TITLE
+        ========================================== */
+
+        .memory-title {
+            text-align: center;
+            margin-bottom: 45px;
+            padding: 0 20px;
+        }
+
+        .memory-title p {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 18px;
+            color: #70515b;
+            margin-bottom: 8px;
+        }
+
+        .memory-title h2 {
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                cursive;
+
+            color: #cf4776;
+
+            font-size: clamp(65px, 9vw, 100px);
+
+            font-weight: normal;
+
+            line-height: .9;
+
+            transform: rotate(-2deg);
+
+            text-shadow: 3px 3px 0 #f1c5d2;
+        }
+
+
+        /* =========================================
+           LITTLE DECORATION
+        ========================================== */
+
+        .memory-decoration {
+            text-align: center;
+
+            color: #d94f78;
+
+            font-size: 25px;
+
+            margin-top: -25px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================================
+           AUTO SCROLL AREA
+        ========================================== */
+
+        .memory-slider {
+            width: 100%;
+
+            overflow: hidden;
+
+            position: relative;
+
+            margin: 40px 0 55px;
+
+            padding: 35px 0 45px;
+
+            background:
+                rgba(255, 248, 235, .55);
+        }
+
+
+        /* =========================================
+           FILM STRIP
+        ========================================== */
+
+        .memory-track {
+
+            display: flex;
+
+            width: max-content;
+
+            gap: 18px;
+
+            animation:
+                memoryScroll 32s linear infinite;
+
+            will-change: transform;
+        }
+
+
+        .memory-track.reverse {
+
+            animation:
+                memoryScrollReverse 35s linear infinite;
+        }
+
+
+        /* =========================================
+           INDIVIDUAL PHOTO
+        ========================================== */
+
+        .memory-photo {
+
+            position: relative;
+
+            width: 270px;
+
+            height: 335px;
+
+            flex-shrink: 0;
+
+            padding: 13px 13px 38px;
+
+            background: #fff;
+
+            box-shadow:
+                5px 8px 18px rgba(80, 50, 60, .20);
+
+            transform: rotate(-2deg);
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease;
+
+            overflow: visible;
+        }
+
+
+        .memory-photo:nth-child(even) {
+
+            transform: rotate(2deg);
+        }
+
+
+        .memory-photo:hover {
+
+            transform:
+                translateY(-12px)
+                rotate(0deg)
+                scale(1.03);
+
+            box-shadow:
+                8px 15px 25px rgba(80, 50, 60, .25);
+
+            z-index: 20;
+        }
+
+
+        .memory-photo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        /* =========================================
+           PHOTO TAPE
+        ========================================== */
+
+        .memory-tape {
+
+            position: absolute;
+
+            width: 90px;
+
+            height: 25px;
+
+            background:
+                rgba(235, 198, 160, .75);
+
+            top: -12px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%)
+                rotate(-3deg);
+
+            z-index: 5;
+        }
+
+
+        /* =========================================
+           FILM HOLES
+        ========================================== */
+
+        .memory-film {
+
+            position: relative;
+
+            background: #222;
+
+            padding: 42px 0 42px;
+
+            box-shadow:
+                8px 10px 0 #b98d96;
+        }
+
+
+        .memory-film::before,
+        .memory-film::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 25px;
+
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 28px,
+                    #fff8e9 28px,
+                    #fff8e9 48px,
+                    transparent 48px,
+                    transparent 70px
+                );
+
+            z-index: 3;
+
+            pointer-events: none;
+        }
+
+
+        .memory-film::before {
+
+            top: 0;
+        }
+
+
+        .memory-film::after {
+
+            bottom: 0;
+        }
+
+
+        /* =========================================
+           FIRST STRIP
+        ========================================== */
+
+        .memory-strip-one {
+
+            transform: rotate(-2deg);
+
+            margin-left: -40px;
+
+            margin-right: -40px;
+        }
+
+
+        .memory-strip-one .memory-track {
+
+            animation-duration: 38s;
+        }
+
+
+        /* =========================================
+           SECOND STRIP
+        ========================================== */
+
+        .memory-strip-two {
+
+            transform: rotate(2deg);
+
+            margin-left: -40px;
+
+            margin-right: -40px;
+        }
+
+
+        .memory-strip-two .memory-track {
+
+            animation-duration: 42s;
+        }
+
+
+        /* =========================================
+           DUPLICATE TRACK EFFECT
+        ========================================== */
+
+        .memory-track img {
+
+            user-select: none;
+
+            -webkit-user-drag: none;
+        }
+
+
+        /* =========================================
+           ANIMATION
+        ========================================== */
+
+        @keyframes memoryScroll {
+
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+
+        }
+
+
+        @keyframes memoryScrollReverse {
+
+            from {
+                transform: translateX(-50%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+
+        }
+
+
+        /* =========================================
+           SCRAPBOOK NOTE
+        ========================================== */
+
+        .memory-note {
+
+            width: min(700px, 88%);
+
+            margin: 80px auto 65px;
+
+            padding: 35px 30px;
+
+            background: #fffdf4;
+
+            border:
+                2px solid #e5c5b7;
+
+            box-shadow:
+                8px 9px 0 #d7b0bc;
+
+            transform: rotate(-1deg);
+
+            text-align: center;
+
+            position: relative;
+        }
+
+
+        .memory-note::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 105px;
+
+            height: 27px;
+
+            top: -14px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%)
+                rotate(-3deg);
+
+            background:
+                rgba(235, 198, 160, .75);
+        }
+
+
+        .memory-note p {
+
+            font-family: Georgia, serif;
+
+            font-style: italic;
+
+            font-size: 20px;
+
+            line-height: 1.7;
+
+            color: #5b414b;
+        }
+
+
+        .memory-note strong {
+
+            color: #cf4776;
+
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                cursive;
+
+            font-size: 38px;
+
+            font-weight: normal;
+        }
+
+
+        /* =========================================
+           VIDEOS
+        ========================================== */
+
+        .memory-video-heading {
+
+            text-align: center;
+
+            color: #cf4776;
+
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                cursive;
+
+            font-size: clamp(48px, 7vw, 70px);
+
+            font-weight: normal;
+
+            margin: 80px 0 35px;
+
+            transform: rotate(-2deg);
+        }
+
+
+        .memory-videos {
+
+            width: min(950px, 94%);
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 28px;
+        }
+
+
+        .memory-video-card {
+
+            background: white;
+
+            padding: 10px 10px 18px;
+
+            box-shadow:
+                5px 8px 18px rgba(80, 50, 60, .18);
+
+            transform: rotate(-2deg);
+        }
+
+
+        .memory-video-card:nth-child(even) {
+
+            transform: rotate(2deg);
+        }
+
+
+        .memory-video-card video {
+
+            width: 100%;
+
+            display: block;
+
+            background: #111;
+        }
+
+
+        .memory-video-card p {
+
+            text-align: center;
+
+            margin-top: 10px;
+
+            color: #cf4776;
+
+            font-family: Georgia, serif;
+
+            font-style: italic;
+        }
+
+
+        /* =========================================
+           FINAL BUTTON
+        ========================================== */
+
+        .memory-final-button {
+
+            display: block;
+
+            margin: 70px auto 30px;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================== */
+
+        @media (max-width: 700px) {
+
+            .memories-page {
+
+                padding-top: 70px;
+            }
+
+
+            .memory-title {
+
+                margin-bottom: 30px;
+            }
+
+
+            .memory-title h2 {
+
+                font-size: 62px;
+            }
+
+
+            .memory-photo {
+
+                width: 205px;
+
+                height: 255px;
+
+                padding: 9px 9px 30px;
+            }
+
+
+            .memory-track {
+
+                gap: 12px;
+
+                animation-duration: 27s;
+            }
+
+
+            .memory-track.reverse {
+
+                animation-duration: 30s;
+            }
+
+
+            .memory-film {
+
+                padding: 35px 0;
+            }
+
+
+            .memory-note {
+
+                margin-top: 65px;
+
+                padding: 30px 22px;
+            }
+
+
+            .memory-note p {
+
+                font-size: 17px;
+            }
+
+
+            .memory-note strong {
+
+                font-size: 32px;
+            }
+
+
+            .memory-videos {
+
+                grid-template-columns: 1fr;
+
+                gap: 25px;
+            }
+
+
+            .memory-video-heading {
+
+                font-size: 50px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- =========================================
+     HOME
+========================================= -->
+
+<section id="home" class="page home-page">
+
+    <div class="decor heart1">♡</div>
+    <div class="decor heart2">♡</div>
+    <div class="decor heart3">♡</div>
+
+    <div class="home-content">
+
+        <p class="tiny-heading">
+            I MADE SOMETHING FOR YOU...
+        </p>
+
+        <h1>
+            To My<br>
+            Favourite Boy <span>♡</span>
+        </h1>
+
+        <p class="home-description">
+            a little something made with way too much love
+        </p>
+
+        <button
+            id="surpriseButton"
+            class="pink-button"
+            type="button">
+            open your surprise ♡
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     GIFTS
+========================================= -->
+
+<section id="gifts" class="page gifts-page">
+
+    <button
+        class="back-button"
+        type="button"
+        data-page="home">
+        ←
+    </button>
+
+    <div class="scrapbook-card gifts-card">
+
+        <div class="decor-star">✦</div>
+
+        <h2>
+            select any gift
+        </h2>
+
+        <p class="subtitle">
+            there's a little surprise waiting inside ♡
+        </p>
+
+        <div class="gift-container">
+
+            <button
+                class="gift gift-one"
+                type="button"
+                data-page="letter">
+
+                <div class="gift-lid"></div>
+
+                <div class="gift-box">
+                    <div class="vertical-ribbon"></div>
+                    <div class="horizontal-ribbon"></div>
+                </div>
+
+                <div class="bow"></div>
+
+            </button>
+
+
+            <button
+                class="gift gift-two"
+                type="button"
+                data-page="reasons">
+
+                <div class="gift-lid blue-lid"></div>
+
+                <div class="gift-box blue-box">
+                    <div class="vertical-ribbon"></div>
+                    <div class="horizontal-ribbon"></div>
+                </div>
+
+                <div class="bow blue-bow"></div>
+
+            </button>
+
+
+            <button
+                class="gift gift-three"
+                type="button"
+                data-page="memories">
+
+                <div class="gift-lid"></div>
+
+                <div class="gift-box">
+                    <div class="vertical-ribbon"></div>
+                    <div class="horizontal-ribbon"></div>
+                </div>
+
+                <div class="bow"></div>
+
+            </button>
+
+        </div>
+
+        <p class="click-gift">
+            ♡ click a gift ♡
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     GIFT 1 — LETTER
+========================================= -->
+
+<section id="letter" class="page letter-page">
+
+    <button
+        class="back-button"
+        type="button"
+        data-page="gifts">
+        ←
+    </button>
+
+    <div class="letter-scene">
+
+        <div class="letter-side-title">
+            <span>my</span>
+            <strong>pretty</strong>
+            <span>boy</span>
+            <b>♡</b>
+        </div>
+
+
+        <div class="paper-letter">
+
+            <div class="tape tape-left"></div>
+            <div class="tape tape-right"></div>
+
+            <h2>
+                To my favourite boy ♡
+            </h2>
+
+            <p>
+                Happy Boyfriend's Day to the person who
+                somehow makes my ordinary days feel a
+                little more special.
+            </p>
+
+            <p>
+                You're honestly one of my favourite people
+                in this entire world.
+            </p>
+
+            <p>
+                Thank you for all the little things you do,
+                all the laughs, all the memories and for
+                simply being you.
+            </p>
+
+            <p>
+                I don't think I say it enough, but I really
+                appreciate having you in my life.
+            </p>
+
+            <p>
+                You are my favourite person, my comfort
+                person and someone I can always be myself
+                around.
+            </p>
+
+            <p>
+                Thank you for listening to all my nonsense,
+                putting up with my moods and being there
+                even when I don't know how to explain
+                what I'm feeling.
+            </p>
+
+            <p>
+                Some of my favourite moments aren't even
+                big moments. They're just our random calls,
+                stupid jokes, little conversations and
+                knowing that you're there.
+            </p>
+
+            <p>
+                I hope we keep making memories together,
+                growing together and annoying each other
+                for a very, very long time.
+            </p>
+
+            <p class="love-line">
+                I love you. Always. ♡
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     GIFT 2 — REASONS
+========================================= -->
+
+<section id="reasons" class="page reasons-page">
+
+    <button
+        class="back-button"
+        type="button"
+        data-page="gifts">
+        ←
+    </button>
+
+    <div class="reasons-design">
+
+        <div class="reasons-top-stars">
+            ✦　✧　♡　✦
+        </div>
+
+        <div class="reasons-paper">
+
+            <div class="pink-strip top-strip"></div>
+
+            <div class="reasons-photo">
+
+                <img
+                    src="images/img1.jpeg"
+                    alt="Our memory">
+
+                <div class="photo-tape"></div>
+
+            </div>
+
+            <div class="reasons-note">
+
+                <h2>
+                    Reasons why I love you ♡
+                </h2>
+
+                <div class="underline"></div>
+
+                <div class="reasons-list">
+
+                    <p>
+                        ♡ you are so special
+                    </p>
+
+                    <p>
+                        ♡ you are loving
+                    </p>
+
+                    <p>
+                        ♡ you are always hard working
+                    </p>
+
+                    <p>
+                        ♡ you are handsome (ofc hehe)
+                    </p>
+
+                    <p>
+                        ♡ you always make me smile
+                    </p>
+
+                    <p>
+                        ♡ you are my favourite thing
+                    </p>
+
+                    <p>
+                        ♡ you are cute, you are always there
+                    </p>
+
+                    <p>
+                        ♡ because of all your efforts
+                    </p>
+
+                    <p>
+                        ♡ you are so amazing all day
+                    </p>
+
+                    <p>
+                        ♡ everything about you will always be my favourite
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="bottom-decoration">
+
+                <span class="big-star">★</span>
+
+                <span class="small-star">✦</span>
+
+                <span class="heart-decoration">♡</span>
+
+                <span class="pink-heart">♥</span>
+
+            </div>
+
+            <div class="pink-strip bottom-strip"></div>
+
+        </div>
+
+        <p class="reasons-footer">
+            little reasons, endless love ♡
+        </p>
+
+        <button
+            class="pink-button reasons-back"
+            type="button"
+            data-page="gifts">
+            back to gifts ♡
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     GIFT 3 — MEMORIES
+========================================= -->
+
+<section id="memories" class="page memories-page">
+
+    <button
+        class="back-button"
+        type="button"
+        data-page="gifts">
+        ←
+    </button>
+
+
+    <!-- =========================================
+         TITLE
+    ========================================== -->
+
+    <div class="memory-title">
+
+        <p>
+            little pieces of us ♡
+        </p>
+
+        <h2>
+            memories
+        </h2>
+
+        <div class="memory-decoration">
+            ✦　♡　✦　♡　✦
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         AUTO SCROLL PHOTO STRIP 1
+    ========================================== -->
+
+    <div class="memory-slider memory-strip-one">
+
+        <div class="memory-film">
+
+            <div class="memory-track">
+
+
+                <!-- ORIGINAL SET -->
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img1.jpeg"
+                        alt="memory 1">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img2.jpeg"
+                        alt="memory 2">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img3.jpeg"
+                        alt="memory 3">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img4.jpeg"
+                        alt="memory 4">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img5.jpeg"
+                        alt="memory 5">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img6.jpeg"
+                        alt="memory 6">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img7.jpeg"
+                        alt="memory 7">
+
+                </div>
+
+
+                <!-- DUPLICATE SET FOR SEAMLESS LOOP -->
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img1.jpeg"
+                        alt="memory 1">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img2.jpeg"
+                        alt="memory 2">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img3.jpeg"
+                        alt="memory 3">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img4.jpeg"
+                        alt="memory 4">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img5.jpeg"
+                        alt="memory 5">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img6.jpeg"
+                        alt="memory 6">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img7.jpeg"
+                        alt="memory 7">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         SCRAPBOOK NOTE
+    ========================================== -->
+
+    <div class="memory-note">
+
+        <p>
+            <strong>our little world ♡</strong>
+            <br>
+            Some moments are tiny,
+            some are completely random,
+            but somehow they become
+            my favourite memories.
+        </p>
+
+    </div>
+
+
+    <!-- =========================================
+         AUTO SCROLL PHOTO STRIP 2
+    ========================================== -->
+
+    <div class="memory-slider memory-strip-two">
+
+        <div class="memory-film">
+
+            <div class="memory-track reverse">
+
+
+                <!-- ORIGINAL SET -->
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img8.jpeg"
+                        alt="memory 8">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img9.jpeg"
+                        alt="memory 9">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img10.jpeg"
+                        alt="memory 10">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img11.jpeg"
+                        alt="memory 11">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img12.jpeg"
+                        alt="memory 12">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img13.jpeg"
+                        alt="memory 13">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img14.jpeg"
+                        alt="memory 14">
+
+                </div>
+
+
+                <!-- DUPLICATE SET -->
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img8.jpeg"
+                        alt="memory 8">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img9.jpeg"
+                        alt="memory 9">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img10.jpeg"
+                        alt="memory 10">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img11.jpeg"
+                        alt="memory 11">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img12.jpeg"
+                        alt="memory 12">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img13.jpeg"
+                        alt="memory 13">
+
+                </div>
+
+
+                <div class="memory-photo">
+
+                    <div class="memory-tape"></div>
+
+                    <img
+                        src="images/img14.jpeg"
+                        alt="memory 14">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         VIDEOS
+    ========================================== -->
+
+    <h2 class="memory-video-heading">
+        little videos of us ♡
+    </h2>
+
+
+    <div class="memory-videos">
+
+
+        <div class="memory-video-card">
+
+            <video controls>
+
+                <source
+                    src="images/vid1.mp4"
+                    type="video/mp4">
+
+            </video>
+
+            <p>
+                a little moment ♡
+            </p>
+
+        </div>
+
+
+        <div class="memory-video-card">
+
+            <video controls>
+
+                <source
+                    src="images/vid2.mp4"
+                    type="video/mp4">
+
+            </video>
+
+            <p>
+                us being us ♡
+            </p>
+
+        </div>
+
+
+        <div class="memory-video-card">
+
+            <video controls>
+
+                <source
+                    src="images/vid3.mp4"
+                    type="video/mp4">
+
+            </video>
+
+            <p>
+                another favourite ♡
+            </p>
+
+        </div>
+
+
+        <div class="memory-video-card">
+
+            <video controls>
+
+                <source
+                    src="images/vid4.mp4"
+                    type="video/mp4">
+
+            </video>
+
+            <p>
+                forever a memory ♡
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================================
+         LAST BUTTON
+    ========================================== -->
+
+    <button
+        class="pink-button memory-final-button"
+        type="button"
+        data-page="final">
+
+        one last thing ♡
+
+    </button>
+
+</section>
+
+
+<!-- =========================================
+     FINAL LETTER
+========================================= -->
+
+<section id="final" class="page final-page">
+
+    <button
+        class="back-button"
+        type="button"
+        data-page="memories">
+        ←
+    </button>
+
+    <div class="final-letter">
+
+        <div class="final-tape"></div>
+
+        <p class="final-small">
+            and finally...
+        </p>
+
+        <h1>
+            For You ♡
+        </h1>
+
+        <div class="final-text">
+
+            <p>
+                To my favourite person, ❤️
+            </p>
+
+            <p>
+                Happy Boyfriend's Day, Toshu. 🥹❤️
+            </p>
+
+            <p>
+                I don't know if I say it enough, but I'm
+                genuinely so grateful that I have you in
+                my life. After everything we've been through
+                together, it still amazes me that somehow,
+                through all the good days, bad days, stupid
+                fights, misunderstandings, laughter, and
+                countless conversations, we're still here.
+            </p>
+
+            <p>
+                Almost five years with you is a lot of
+                memories to fit into one letter. We've grown
+                together, changed together, annoyed each
+                other countless times 😂, and still somehow
+                found our way back to each other every time.
+            </p>
+
+            <p>
+                You have seen so many versions of me.
+                The happy me, the dramatic me, the
+                overthinking me, the annoying me, the
+                emotional me, and probably the version of me
+                that even I don't understand sometimes.
+                And despite all of that, you continue to be
+                there.
+            </p>
+
+            <p>
+                I know I'm not always the easiest person to
+                love. Sometimes I overthink things, sometimes
+                I get angry over the smallest things,
+                sometimes I don't express what I'm actually
+                feeling properly. I know I can hurt you,
+                even when I don't mean to. And I'm sorry
+                for those moments.
+            </p>
+
+            <p>
+                But beneath all of that, there is one thing
+                I'm always sure about — you matter to me
+                so much.
+            </p>
+
+            <p>
+                You have become such a big part of my life
+                that sometimes I can't even imagine what
+                my everyday life would look like without you.
+                You're the person I want to tell random things
+                to, the person I want to call when something
+                happens, the person whose messages can change
+                my entire mood.
+            </p>
+
+            <p>
+                And I love the little things about us too.
+                Our random conversations. Our stupid jokes.
+                The way we can talk about absolutely nothing
+                and somehow spend so much time doing it.
+                The comfort of knowing there's someone on
+                the other side of the phone who knows me
+                so well.
+            </p>
+
+            <p>
+                I don't know exactly what the future will
+                look like. We still have so much to figure
+                out, so much to achieve, and so many things
+                ahead of us. But I hope that when we look
+                back someday, we'll remember these years
+                and smile at how young, stupid, emotional,
+                and completely in love we were.
+            </p>
+
+            <p>
+                Thank you for staying. Thank you for choosing
+                me even on the days when I'm difficult to
+                understand. Thank you for loving me in your
+                own way. And thank you for being you.
+            </p>
+
+            <p>
+                I hope you know that you aren't just my
+                boyfriend. You're my comfort person, my
+                favourite notification, my biggest headache 😂,
+                my safe place, and one of the most important
+                people in my life.
+            </p>
+
+            <p>
+                And if I don't say it enough—
+            </p>
+
+            <p class="big-love">
+                I love you. A lot. More than I sometimes
+                know how to express. ❤️
+            </p>
+
+            <p>
+                If I could give you one thing in life,
+                I would give you the ability to see yourself
+                through my eyes.
+            </p>
+
+            <p>
+                Maybe then you would understand just how
+                special you are to me.
+            </p>
+
+            <p>
+                Thank you for being a part of my life,
+                for all the memories we've made, for every
+                laugh, every conversation, every little moment
+                and everything in between.
+            </p>
+
+            <p>
+                I don't know what the future holds, but I
+                know that I want to keep making memories
+                with you.
+            </p>
+
+            <p>
+                Through the good days, the bad days, the
+                silly days and all the ordinary days, I hope
+                you always know that you are loved.
+            </p>
+
+            <p>
+                You are one of the most precious parts of
+                my life.
+            </p>
+
+            <p>
+                And if I had to choose all over again,
+                I'd still choose you.
+            </p>
+
+            <p>
+                Happy Boyfriend's Day to my person.
+                Here's to us, to everything we've already
+                survived, and to all the memories we haven't
+                made yet.
+            </p>
+
+            <p class="always">
+                Always yours, ❤️
+            </p>
+
+        </div>
+
+        <div class="final-heart">
+            ♡
+        </div>
+
+        <p class="forever">
+            forever yours
+        </p>
+
+        <button
+            class="pink-button"
+            type="button"
+            data-page="home">
+            back to the beginning ♡
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     MUSIC
+========================================= -->
+
+<audio id="bgMusic" loop>
+
+    <source
+        src="music.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+
+<button
+    id="musicButton"
+    type="button">
+
+    ♫
+
+</button>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
